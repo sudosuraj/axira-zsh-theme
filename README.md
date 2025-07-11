@@ -1,6 +1,6 @@
 # Axira Zsh Theme
 
-A sleek, modern multi-line Zsh theme — with smart VPN/IP detection, Python virtualenv, Git branch, and pretty exit status. 🐍 🔒 🌐
+A sleek, modern multi-line Zsh theme built specially for Red Teamers, Bug Bounty Hunters and Pentesters, with smart VPN/IP detection, Python virtualenv, Git branch, and pretty exit status.
 
 <img width="492" height="236" alt="image" src="https://github.com/user-attachments/assets/85d713c5-4156-42a5-8750-c0ab55ff8dcf" />
 
