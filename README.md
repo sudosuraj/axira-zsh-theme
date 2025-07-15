@@ -1,64 +1,85 @@
 # Axira Zsh Theme
 
-A sleek, modern multi-line Zsh theme built specially for Red Teamers, Bug Bounty Hunters and Pentesters, with smart VPN/IP detection, Python virtualenv, Git branch, and pretty exit status.
+`axira` is a minimal, pentester-focused `oh-my-zsh` theme designed for clean, useful, and context-rich prompts.\
+It automatically shows your active VPN or network IP, your user context, Python virtual environments, Git branches, and clear indicators for root access.
 
+---
 
-<img width="438" height="264" alt="image" src="https://github.com/user-attachments/assets/8e75ec57-2311-4402-b03a-bf5076aeb175" />
+## Features
 
+- **Multi-line prompt**\
+  Displays the current working directory, user, hostname, interface name, and IP address in a clean format.
 
-## ✨ Axira Zsh Theme — Features
-✅ Clean multi-line prompt
+- **VPN-aware IP detection**\
+  Automatically shows your VPN IP (via `tun0`) if connected, otherwise falls back to your local `eth0` IP. Perfect for CTFs, labs, and external networks.
 
-Top line shows: current directory, user@hostname, active network interface & IP
+- **Dynamic prompt**\
+  Uses `setopt prompt_subst` to refresh the network information every time you hit Enter. No more stale IPs.
 
-Bottom line shows a neat arrow prompt for commands
+- **Root warning**\
+  If you are root (`sudo -s` or `sudo su`), the entire prompt turns red to warn you clearly.
 
-✅ Network interface detection
+- **Python virtual environment**\
+  Displays the active Python virtual environment name when one is active.
 
-Automatically shows tun0 or eth0 with your local IP
+- **Git branch detection**\
+  Shows the current Git branch if you are in a Git repository.
 
-Falls back to NoNet if no network is found
+- **Command status indicator**\
+  Shows ✔ if the last command succeeded, or ✗ if it failed, on the right-hand side (`RPROMPT`).
 
-✅ Dynamic user@hostname block
+---
 
-Shows your username and short hostname so you always know your context
+## Prompt Example
 
-✅ Python virtual environment indicator 🐍
+```
+┌─[~/HTB] [kali@MyLaptop | tun0 10.8.0.2]
+└─➜  # When VPN is connected
 
-Displays the active Python virtualenv name, if any
+┌─[~] [kali@MyLaptop | eth0 192.168.1.10]
+└─➜  # When VPN is disconnected
 
-✅ Git branch info
+┌─[~] [root@MyLaptop | eth0 192.168.1.10]
+└─➜  # Root user - whole prompt in red
+```
 
-Shows the current Git branch with a nice icon when inside a Git repo
+---
 
-✅ Command exit status
+## Installation
 
-Shows ✔ for success or ✗ for error as a right-side prompt (RPROMPT)
+1. Copy the theme file to your Oh My Zsh custom themes folder:
 
-✅ Root user mode 🔒
-
-When you’re root (sudo -s or sudo su), your entire prompt turns red for maximum visibility — so you never accidentally run dangerous commands as root
-
-✅ Lightweight & fast
-
-Pure Zsh, no extra plugins or dependencies
-
-Works perfectly with Oh My Zsh custom themes
-
-## ⚡️ Installation
-
-1. Clone the repo into your custom Oh My Zsh themes:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/axira-zsh-theme.git $ZSH_CUSTOM/themes/axira
+   mkdir -p ~/.oh-my-zsh/custom/themes
+   cp axira.zsh-theme ~/.oh-my-zsh/custom/themes/
    ```
-2. Edit your ~/.zshrc:
-  ```bash
-   ZSH_THEME="axira/axira"
-  ```
-3. Reload:
-  ```bash
-  source ~/.zshrc
-  ```
- 
 
-      
+2. Edit your `.zshrc`:
+
+   ```bash
+   ZSH_THEME="axira"
+   ```
+
+3. Make sure `setopt prompt_subst` is in the theme (included by default).\
+   This ensures that your VPN IP/interface always refreshes automatically.
+
+4. Reload your shell:
+
+   ```bash
+   source ~/.zshrc
+   ```
+
+---
+
+## Recommended for
+
+- Pentesters who need to quickly see which network (VPN or local) they are using
+- CTF players on Hack The Box, TryHackMe, or labs
+- Developers who want minimal distractions but clear context
+
+---
+
+## License
+
+MIT License. Free to use, modify, and share.
+
