@@ -43,6 +43,9 @@ It automatically shows your active VPN or network IP, your user context, Python 
 └─➜  # Root user - whole prompt in red
 ```
 
+<img width="438" height="264" alt="image" src="https://github.com/user-attachments/assets/2e54e28e-8a36-486d-96e4-6b0ae4ba89ff" />
+
+
 ---
 
 ## Installation
