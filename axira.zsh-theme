@@ -16,6 +16,7 @@ get_ip_and_interface() {
   local fallback_iface=""
   local ip=""
 
+  # Get all interfaces
   for iface in $(ip -o link show | awk -F': ' '{print $2}'); do
     if [[ "$iface" == "lo" ]]; then
       continue
@@ -27,11 +28,13 @@ get_ip_and_interface() {
     fi
   done
 
+  # Prefer VPN-like interface
   if [[ -n "$vpn_iface" ]]; then
     ip=$(ip -4 addr show "$vpn_iface" 2>/dev/null | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head -1)
     [[ -n "$ip" ]] && { echo "$vpn_iface $ip"; return; }
   fi
 
+  # Fallback to eth0/eth1
   if [[ -n "$fallback_iface" ]]; then
     ip=$(ip -4 addr show "$fallback_iface" 2>/dev/null | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head -1)
     [[ -n "$ip" ]] && { echo "$fallback_iface $ip"; return; }
@@ -42,7 +45,7 @@ get_ip_and_interface() {
 
 git_branch() {
   local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  [[ -n "$branch" ]] && echo "%{$YELLOW%}εéá $branch%{$RESET%}"
+  [[ -n "$branch" ]] && echo "%{$YELLOW%} $branch%{$RESET%}"
 }
 
 python_venv() {
@@ -50,12 +53,12 @@ python_venv() {
 }
 
 exit_status() {
-  [[ $? -eq 0 ]] && echo "%{$GREEN%}Γ£ö%{$RESET%}" || echo "%{$RED%}Γ£ù%{$RESET%}"
+  [[ $? -eq 0 ]] && echo "%{$GREEN%}✔%{$RESET%}" || echo "%{$RED%}✗%{$RESET%}"
 }
 
-local PROMPT_CORNER="ΓöîΓöÇ"
-local PROMPT_BOTTOM="ΓööΓöÇ"
-local PROMPT_ARROW="Γ₧£"
+local PROMPT_CORNER="┌─"
+local PROMPT_BOTTOM="└─"
+local PROMPT_ARROW="➜"
 
 build_prompt() {
   local BASE_PROMPT="
