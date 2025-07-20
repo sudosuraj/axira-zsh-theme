@@ -10,8 +10,8 @@ It automatically shows your active VPN or network IP, your user context, Python 
 - **Multi-line prompt**\
   Displays the current working directory, user, hostname, interface name, and IP address in a clean format.
 
-- **VPN-aware IP detection**\
-  Automatically shows your VPN IP (via `tun0`) if connected, otherwise falls back to your local `eth0` IP. Perfect for CTFs, labs, and external networks.
+- **Dynamic VPN-aware IP detection**\
+  Dynamically shows your VPN IP if connected, otherwise falls back to your local `eth0` IP. Perfect for CTFs, labs, and external networks.
 
 - **Dynamic prompt**\
   Uses `setopt prompt_subst` to refresh the network information every time you hit Enter. No more stale IPs.
